@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Hour — a living desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="mast">
+    <div class="mast-left">
+      <p class="kicker">Vol. I · printed in the browser</p>
+      <h1>The Hour</h1>
+    </div>
+    <div class="mast-center">
+      <div class="clock" id="clock">00:00:00</div>
+      <p class="clock-sub">next edition in <span id="remain">—</span></p>
+    </div>
+    <div class="mast-right">
+      <button class="ghost" id="authBtn">Sign in</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="feature" id="feature">
+      <p class="eyebrow">This hour</p>
+      <h2 id="featTitle">Loading the desk…</h2>
+      <p class="lede" id="featBody"></p>
+    </section>
+
+    <section class="desk">
+      <aside class="composer" id="composer">
+        <h3>Your drawer</h3>
+        <p class="hint" id="composerHint">Sign in to leave a note. Mark it public and it hangs on the wall.</p>
+        <form id="noteForm" hidden>
+          <label>Title
+            <input name="title" maxlength="80" placeholder="A short heading" />
+          </label>
+          <label>Note
+            <textarea name="body" required maxlength="2000" rows="6" placeholder="Something you would pin to a corkboard."></textarea>
+          </label>
+          <label class="check">
+            <input type="checkbox" name="is_public" />
+            Show this to the public
+          </label>
+          <button type="submit">Pin it</button>
+        </form>
+        <div id="mine" class="mine"></div>
+      </aside>
+
+      <section class="wall">
+        <div class="wall-head">
+          <h3>Public wall</h3>
+          <p>Anything marked public appears here for anyone walking past.</p>
+        </div>
+        <div id="wall" class="cards"></div>
+      </section>
+    </section>
+  </main>
+
+  <div class="modal" id="authModal" hidden>
+    <div class="sheet">
+      <button class="close" id="closeAuth">×</button>
+      <h3 id="authTitle">Sign in</h3>
+      <p class="hint">Email and password. Your notes stay until you tear them down.</p>
+      <form id="authForm">
+        <label>Display name
+          <input name="name" maxlength="40" placeholder="How you want to appear" />
+        </label>
+        <label>Email
+          <input name="email" type="email" required />
+        </label>
+        <label>Password
+          <input name="password" type="password" required minlength="6" />
+        </label>
+        <div class="row">
+          <button type="submit" data-mode="signin">Sign in</button>
+          <button type="button" class="ghost" id="toggleAuth">Need an account?</button>
+        </div>
+        <p class="err" id="authErr"></p>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
